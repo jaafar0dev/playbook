@@ -12,6 +12,8 @@ export interface User {
   walletBalance: number;
   createdAt: string;
   avatar?: string;
+  whatsappNumber?: string;
+  enableWhatsappReminders?: boolean;
 }
 
 // Team Types
@@ -60,6 +62,7 @@ export interface Task {
   whyItMatters: string;
   instructions: string[];
   resources: Resource[];
+  vendors?: Vendor[]; // Allow outsourcing
   estimatedTime: number; // in hours
   assignedRole: UserRole;
   phase: string;
@@ -70,9 +73,15 @@ export interface Task {
 export interface Resource {
   title: string;
   url: string;
-  type: 'video' | 'article' | 'template' | 'tool';
+  type: 'video' | 'article' | 'template' | 'tool' | 'pdf';
 }
 
+export interface Vendor {
+  id: string;
+  name: string;
+  service: string;
+  contactUrl: string;
+}
 // Task Submission Types
 export type SubmissionStatus = 'pending' | 'approved' | 'rejected';
 

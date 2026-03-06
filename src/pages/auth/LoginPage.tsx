@@ -51,7 +51,7 @@ export default function LoginPage({ onNavigate, onLogin }: LoginPageProps) {
             </div>
             <CardTitle className="text-2xl">Welcome back</CardTitle>
             <CardDescription>
-              Sign in to your Playbook account to continue your journey
+              Sign in to your Growth Playbook account to continue your journey
             </CardDescription>
           </CardHeader>
           <CardContent>

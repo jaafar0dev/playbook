@@ -26,6 +26,9 @@ import {
   Info,
   X,
   Home,
+  Users,
+  Tag,
+  Briefcase,
 } from "lucide-react";
 import type { Task } from "@/types";
 
@@ -337,6 +340,109 @@ export default function RoadmapTasksPage() {
                       <ExternalLink className="h-4 w-4 text-gray-300 group-hover:text-blue-500 transition-colors" />
                     </a>
                   ))}
+                </div>
+              </section>
+            )}
+            {/* NEW: Vendor Outsourcing Section with Discounts */}
+            {!isApproved && (
+              <section className="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-2xl p-6 md:p-8 border border-indigo-100 shadow-sm relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-6 opacity-10">
+                  <Users className="w-32 h-32" />
+                </div>
+                <div className="relative z-10">
+                  <div className="flex items-center justify-between mb-2">
+                    <h2 className="text-xl font-bold text-indigo-900 flex items-center gap-2">
+                      <Briefcase className="h-6 w-6 text-indigo-600" />
+                      Too busy? Outsource this task.
+                    </h2>
+                    {/* Floating Discount Badge */}
+                    <span className="hidden sm:flex items-center gap-1 bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full border border-green-200 shadow-sm">
+                      <Tag className="w-3 h-3" />
+                      Platform Discounts Active
+                    </span>
+                  </div>
+
+                  <p className="text-indigo-700/80 mb-6 max-w-xl">
+                    You're running a business; your time is valuable. Connect
+                    with verified Growth Supervisors and specialized vendors who
+                    can execute this task for you immediately.
+                  </p>
+
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    {/* Growth Supervisor Card */}
+                    <div className="bg-white p-4 rounded-xl border border-indigo-100 shadow-sm flex flex-col justify-between hover:border-indigo-300 hover:shadow-md transition-all relative">
+                      {/* 20% Off Corner Ribbon/Badge */}
+                      <div className="absolute -top-3 -right-3 bg-red-500 text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-sm transform rotate-12">
+                        20% OFF
+                      </div>
+
+                      <div className="mb-4">
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="bg-indigo-100 text-indigo-700 text-xs font-bold px-2 py-0.5 rounded">
+                            PRO
+                          </span>
+                          <h4 className="font-bold text-gray-900">
+                            Growth Supervisor
+                          </h4>
+                        </div>
+                        <p className="text-sm text-gray-500 line-clamp-2">
+                          A dedicated supervisor to manage and execute this
+                          phase on your behalf.
+                        </p>
+                      </div>
+                      <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-50">
+                        <div className="flex flex-col">
+                          <div className="flex items-center gap-2">
+                            <span className="text-lg font-bold text-gray-900">
+                              $40
+                            </span>
+                            <span className="text-sm text-gray-400 line-through">
+                              $50
+                            </span>
+                          </div>
+                          <span className="text-[10px] text-green-600 font-semibold uppercase tracking-wider">
+                            Early Adopter Rate
+                          </span>
+                        </div>
+                        <Button
+                          size="sm"
+                          className="bg-indigo-600 hover:bg-indigo-700 text-white"
+                        >
+                          Hire Now
+                        </Button>
+                      </div>
+                    </div>
+
+                    {/* Freelance Specialist Card */}
+                    <div className="bg-white p-4 rounded-xl border border-indigo-100 shadow-sm flex flex-col justify-between hover:border-indigo-300 hover:shadow-md transition-all">
+                      <div className="mb-4">
+                        <h4 className="font-bold text-gray-900 mb-1">
+                          Freelance Specialist
+                        </h4>
+                        <p className="text-sm text-gray-500 line-clamp-2">
+                          A vetted independent contractor specializing in this
+                          specific task type.
+                        </p>
+                      </div>
+                      <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-50">
+                        <div className="flex flex-col">
+                          <span className="text-sm font-semibold text-gray-900">
+                            Get Quotes
+                          </span>
+                          <span className="text-[10px] text-indigo-500 font-medium">
+                            Use wallet balance for up to 15% off
+                          </span>
+                        </div>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="border-indigo-200 text-indigo-700 hover:bg-indigo-50"
+                        >
+                          View Vendors
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </section>
             )}

@@ -1,27 +1,34 @@
-import { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Badge } from '@/components/ui/badge';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { 
-  User, 
-  Mail, 
-  Briefcase, 
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Switch } from "@/components/ui/switch";
+import {
+  User,
+  Mail,
+  Briefcase,
   Key,
   Camera,
   Save,
-  CheckCircle2
-} from 'lucide-react';
-import { useApp } from '@/contexts/AppContext';
+  CheckCircle2,
+  Smartphone,
+  MessageCircle,
+} from "lucide-react";
+import { useApp } from "@/contexts/AppContext";
 
 export default function ProfilePage() {
   const { currentUser, updateUser } = useApp();
   const [isEditing, setIsEditing] = useState(false);
+
+  // Added WhatsApp fields to local state
   const [formData, setFormData] = useState({
     name: currentUser.name,
     email: currentUser.email,
+    whatsappNumber: currentUser.whatsappNumber || "",
+    enableWhatsappReminders: currentUser.enableWhatsappReminders || false,
   });
   const [showSuccess, setShowSuccess] = useState(false);
 
@@ -30,6 +37,8 @@ export default function ProfilePage() {
       ...currentUser,
       name: formData.name,
       email: formData.email,
+      whatsappNumber: formData.whatsappNumber,
+      enableWhatsappReminders: formData.enableWhatsappReminders,
     });
     setIsEditing(false);
     setShowSuccess(true);
@@ -59,30 +68,42 @@ export default function ProfilePage() {
               <Avatar className="w-32 h-32">
                 <AvatarImage src={currentUser.avatar} />
                 <AvatarFallback className="text-3xl bg-blue-100 text-blue-600">
-                  {currentUser.name.split(' ').map(n => n[0]).join('')}
+                  {currentUser.name
+                    .split(" ")
+                    .map((n) => n[0])
+                    .join("")}
                 </AvatarFallback>
               </Avatar>
-              <Button 
-                size="icon" 
+              <Button
+                size="icon"
                 className="absolute bottom-0 right-0 rounded-full"
                 variant="secondary"
               >
                 <Camera className="h-4 w-4" />
               </Button>
             </div>
-            
+
             <div className="text-center md:text-left flex-1">
-              <h2 className="text-2xl font-bold text-gray-900">{currentUser.name}</h2>
+              <h2 className="text-2xl font-bold text-gray-900">
+                {currentUser.name}
+              </h2>
               <p className="text-gray-500">{currentUser.email}</p>
               <div className="flex items-center justify-center md:justify-start gap-2 mt-3">
-                <Badge className="bg-blue-100 text-blue-700">{currentUser.role}</Badge>
-                <Badge variant="outline">Member since {new Date(currentUser.createdAt).toLocaleDateString()}</Badge>
+                <Badge className="bg-blue-100 text-blue-700">
+                  {currentUser.role}
+                </Badge>
+                <Badge variant="outline">
+                  Member since{" "}
+                  {new Date(currentUser.createdAt).toLocaleDateString()}
+                </Badge>
               </div>
             </div>
-            
+
             <div className="text-right">
               <div className="text-sm text-gray-500">Referral Code</div>
-              <div className="text-lg font-mono font-medium text-gray-900">{currentUser.referralCode}</div>
+              <div className="text-lg font-mono font-medium text-gray-900">
+                {currentUser.referralCode}
+              </div>
             </div>
           </div>
         </CardContent>
@@ -108,11 +129,13 @@ export default function ProfilePage() {
               <Input
                 id="name"
                 value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
                 disabled={!isEditing}
               />
             </div>
-            
+
             <div className="space-y-2">
               <Label htmlFor="email">
                 <Mail className="h-4 w-4 inline mr-2" />
@@ -122,11 +145,13 @@ export default function ProfilePage() {
                 id="email"
                 type="email"
                 value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
                 disabled={!isEditing}
               />
             </div>
-            
+
             <div className="space-y-2">
               <Label htmlFor="role">
                 <Briefcase className="h-4 w-4 inline mr-2" />
@@ -139,7 +164,7 @@ export default function ProfilePage() {
                 className="bg-gray-50"
               />
             </div>
-            
+
             <div className="space-y-2">
               <Label htmlFor="referral">
                 <Key className="h-4 w-4 inline mr-2" />
@@ -153,10 +178,77 @@ export default function ProfilePage() {
               />
             </div>
           </div>
-          
+        </CardContent>
+      </Card>
+
+      {/* NEW: Preferences & Notifications Card */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Notifications & Preferences</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <div className="flex items-center justify-between border-b pb-6">
+            <div className="space-y-0.5">
+              <Label className="text-base flex items-center gap-2">
+                <MessageCircle className="h-4 w-4 text-green-600" />
+                WhatsApp Task Reminders
+              </Label>
+              <p className="text-sm text-gray-500">
+                Receive daily task alerts and roadmap progress updates via
+                WhatsApp.
+              </p>
+            </div>
+            <Switch
+              checked={formData.enableWhatsappReminders}
+              onCheckedChange={(checked) => {
+                setFormData({ ...formData, enableWhatsappReminders: checked });
+                if (
+                  !isEditing &&
+                  checked !== currentUser.enableWhatsappReminders
+                )
+                  setIsEditing(true);
+              }}
+              disabled={!isEditing}
+            />
+          </div>
+
+          {formData.enableWhatsappReminders && (
+            <div className="space-y-2 max-w-md animate-in slide-in-from-top-2">
+              <Label htmlFor="whatsappNumber">
+                <Smartphone className="h-4 w-4 inline mr-2" />
+                WhatsApp Number
+              </Label>
+              <Input
+                id="whatsappNumber"
+                placeholder="+1 (555) 000-0000"
+                value={formData.whatsappNumber}
+                onChange={(e) =>
+                  setFormData({ ...formData, whatsappNumber: e.target.value })
+                }
+                disabled={!isEditing}
+              />
+              <p className="text-xs text-gray-500">
+                Include your country code.
+              </p>
+            </div>
+          )}
+
           {isEditing && (
-            <div className="flex gap-3 justify-end">
-              <Button variant="outline" onClick={() => setIsEditing(false)}>
+            <div className="flex gap-3 justify-end mt-6">
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setIsEditing(false);
+                  // Revert to current user state if cancelled
+                  setFormData({
+                    name: currentUser.name,
+                    email: currentUser.email,
+                    whatsappNumber: currentUser.whatsappNumber || "",
+                    enableWhatsappReminders:
+                      currentUser.enableWhatsappReminders || false,
+                  });
+                }}
+              >
                 Cancel
               </Button>
               <Button onClick={handleSave}>
@@ -169,6 +261,7 @@ export default function ProfilePage() {
       </Card>
 
       {/* Account Stats */}
+      {/* ... keeping the existing stats ... */}
       <div className="grid sm:grid-cols-3 gap-4">
         <Card>
           <CardContent className="p-6 text-center">

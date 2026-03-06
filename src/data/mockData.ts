@@ -67,8 +67,6 @@ export const mockTeams: Team[] = [
     createdAt: '2024-01-15T10:00:00Z',
   },
 ];
-
-// Mock Programs with Roadmap
 export const mockPrograms: Program[] = [
   {
     id: 'prog1',
@@ -90,7 +88,7 @@ export const mockPrograms: Program[] = [
               {
                 id: 'task1',
                 title: 'Market Research',
-                description: 'Conduct comprehensive market research to understand your target industry, market size, and trends.',
+                description: 'Conduct comprehensive market research to deeply understand your target industry, calculate the total addressable market size, and identify emerging trends. By thoroughly analyzing current consumer behaviors, economic shifts, and industry forecasts, you will be able to pinpoint lucrative opportunities, avoid highly saturated or declining markets, and position your product for sustainable, long-term growth and success in a competitive landscape.',
                 whyItMatters: 'Understanding the market landscape helps you identify opportunities and avoid saturated markets.',
                 instructions: [
                   'Identify your target market size using tools like Statista, IBISWorld, or industry reports',
@@ -99,8 +97,10 @@ export const mockPrograms: Program[] = [
                   'Document your findings in a market research report',
                 ],
                 resources: [
-                  { title: 'Market Research Guide', url: '#', type: 'article' },
+                  { title: 'Market Research Masterclass', url: '#', type: 'video' },
+                  { title: 'Market Research Guide', url: '#', type: 'pdf' },
                   { title: 'Market Sizing Template', url: '#', type: 'template' },
+                  { title: 'Market Analysis Dashboard', url: '#', type: 'tool' },
                 ],
                 estimatedTime: 4,
                 assignedRole: 'Founder',
@@ -111,7 +111,7 @@ export const mockPrograms: Program[] = [
               {
                 id: 'task2',
                 title: 'Customer Interviews',
-                description: 'Interview potential customers to validate your assumptions and understand their pain points.',
+                description: 'Engage directly with your potential customers through structured, in-depth interviews to validate your foundational business assumptions and thoroughly understand their daily pain points. This qualitative research method allows you to uncover hidden needs, gather authentic feedback on your proposed solutions, and ensure that your product development aligns perfectly with what your target audience actually desires and is willing to pay for.',
                 whyItMatters: 'Direct customer feedback is the best way to validate your idea and refine your value proposition.',
                 instructions: [
                   'Create a list of 20-30 potential customers to interview',
@@ -120,8 +120,10 @@ export const mockPrograms: Program[] = [
                   'Document insights and patterns from the interviews',
                 ],
                 resources: [
-                  { title: 'Customer Interview Script', url: '#', type: 'template' },
                   { title: 'How to Conduct Customer Interviews', url: '#', type: 'video' },
+                  { title: 'Customer Discovery Handbook', url: '#', type: 'pdf' },
+                  { title: 'Customer Interview Script', url: '#', type: 'template' },
+                  { title: 'Interview Recording & Transcription App', url: '#', type: 'tool' },
                 ],
                 estimatedTime: 6,
                 assignedRole: 'Founder',
@@ -132,7 +134,7 @@ export const mockPrograms: Program[] = [
               {
                 id: 'task3',
                 title: 'Competitor Analysis',
-                description: 'Analyze your direct and indirect competitors to identify gaps and opportunities.',
+                description: 'Perform a meticulous and detailed analysis of both your direct and indirect competitors to identify critical gaps in the current market offerings. By systematically evaluating their pricing strategies, feature sets, marketing positioning, and customer reviews, you can discover unique angles for differentiation, capitalize on their weaknesses, and strategically position your own product to capture a significant share of the target market.',
                 whyItMatters: 'Understanding competitors helps you differentiate and position your product effectively.',
                 instructions: [
                   'Identify 5-7 direct competitors',
@@ -141,8 +143,10 @@ export const mockPrograms: Program[] = [
                   'Create a competitive matrix',
                 ],
                 resources: [
+                  { title: 'Competitor Analysis Strategies', url: '#', type: 'video' },
+                  { title: 'Competitive Intelligence Report Example', url: '#', type: 'pdf' },
                   { title: 'Competitor Analysis Template', url: '#', type: 'template' },
-                  { title: 'Competitive Intelligence Tools', url: '#', type: 'tool' },
+                  { title: 'Competitive Intelligence Analytics', url: '#', type: 'tool' },
                 ],
                 estimatedTime: 3,
                 assignedRole: 'Marketing',
@@ -160,7 +164,7 @@ export const mockPrograms: Program[] = [
               {
                 id: 'task4',
                 title: 'Define Value Proposition',
-                description: 'Craft a compelling value proposition that clearly communicates your unique value.',
+                description: 'Carefully craft a highly compelling and crystal-clear value proposition that effectively communicates the unique benefits your product brings to the table. This foundational statement must concisely articulate the exact problem you are solving, how your solution is vastly superior to existing alternatives, and the specific, measurable value customers will gain, thereby serving as the cornerstone for all your future marketing and sales efforts.',
                 whyItMatters: 'A clear value proposition helps you communicate effectively with customers and investors.',
                 instructions: [
                   'Identify the main problem you solve',
@@ -169,8 +173,10 @@ export const mockPrograms: Program[] = [
                   'Create a value proposition canvas',
                 ],
                 resources: [
+                  { title: 'Crafting Your Value Proposition', url: '#', type: 'video' },
+                  { title: 'Value Proposition Case Studies', url: '#', type: 'pdf' },
                   { title: 'Value Proposition Canvas', url: '#', type: 'template' },
-                  { title: 'Value Proposition Examples', url: '#', type: 'article' },
+                  { title: 'Value Prop Generator', url: '#', type: 'tool' },
                 ],
                 estimatedTime: 2,
                 assignedRole: 'Founder',
@@ -181,7 +187,7 @@ export const mockPrograms: Program[] = [
               {
                 id: 'task5',
                 title: 'Problem Validation Survey',
-                description: 'Create and distribute a survey to validate the problem you are solving.',
+                description: 'Design, distribute, and analyze a comprehensive quantitative survey targeted at your ideal customer profile to statistically validate the severity and pervasiveness of the problem you aim to solve. Gathering a large volume of structured data points will help you confirm that the issue is widespread enough to support a viable business model and prevent you from building a solution for a non-existent or highly niche problem.',
                 whyItMatters: 'Quantitative validation helps you understand the scale of the problem.',
                 instructions: [
                   'Design a 10-question survey about the problem',
@@ -190,8 +196,10 @@ export const mockPrograms: Program[] = [
                   'Document key findings and insights',
                 ],
                 resources: [
-                  { title: 'Survey Design Best Practices', url: '#', type: 'article' },
+                  { title: 'Survey Design Best Practices', url: '#', type: 'video' },
+                  { title: 'Validating Problems with Data', url: '#', type: 'pdf' },
                   { title: 'Problem Validation Survey Template', url: '#', type: 'template' },
+                  { title: 'Survey Builder App', url: '#', type: 'tool' },
                 ],
                 estimatedTime: 4,
                 assignedRole: 'Marketing',
@@ -218,7 +226,7 @@ export const mockPrograms: Program[] = [
               {
                 id: 'task6',
                 title: 'Feature Prioritization',
-                description: 'Prioritize features for your MVP using frameworks like MoSCoW or RICE.',
+                description: 'Systematically evaluate and prioritize the long list of potential features for your Minimum Viable Product using established frameworks like MoSCoW or RICE. This rigorous prioritization process ensures that your engineering and design resources are strictly focused on developing only the most essential, core functionalities required to solve the primary user problem, allowing you to launch to market significantly faster and gather real-world validation sooner.',
                 whyItMatters: 'Focusing on essential features helps you launch faster and validate sooner.',
                 instructions: [
                   'List all potential features',
@@ -227,8 +235,10 @@ export const mockPrograms: Program[] = [
                   'Create a product roadmap',
                 ],
                 resources: [
-                  { title: 'Feature Prioritization Framework', url: '#', type: 'article' },
+                  { title: 'Feature Prioritization Breakdown', url: '#', type: 'video' },
+                  { title: 'Prioritization Frameworks Guide', url: '#', type: 'pdf' },
                   { title: 'Product Roadmap Template', url: '#', type: 'template' },
+                  { title: 'Roadmap Planning Software', url: '#', type: 'tool' },
                 ],
                 estimatedTime: 3,
                 assignedRole: 'Product',
@@ -239,7 +249,7 @@ export const mockPrograms: Program[] = [
               {
                 id: 'task7',
                 title: 'Wireframing & Prototyping',
-                description: 'Create wireframes and interactive prototypes of your MVP.',
+                description: 'Translate your prioritized feature list into visual low-fidelity wireframes and interactive high-fidelity prototypes to establish a clear user experience flow. Visualizing the product interface early on allows your team to conduct crucial preliminary usability testing with potential users, gather immediate feedback on the navigation and layout, and make rapid, cost-effective iterations before writing a single line of expensive production code.',
                 whyItMatters: 'Prototypes help you visualize and test your product before development.',
                 instructions: [
                   'Create low-fidelity wireframes for all screens',
@@ -248,8 +258,10 @@ export const mockPrograms: Program[] = [
                   'Iterate based on feedback',
                 ],
                 resources: [
-                  { title: 'Wireframing Best Practices', url: '#', type: 'article' },
                   { title: 'Figma Prototyping Tutorial', url: '#', type: 'video' },
+                  { title: 'UI/UX Wireframing Guide', url: '#', type: 'pdf' },
+                  { title: 'UI Component Library Template', url: '#', type: 'template' },
+                  { title: 'Wireframing & Design App', url: '#', type: 'tool' },
                 ],
                 estimatedTime: 5,
                 assignedRole: 'Product',
@@ -267,7 +279,7 @@ export const mockPrograms: Program[] = [
               {
                 id: 'task8',
                 title: 'Technical Architecture',
-                description: 'Design the technical architecture for your MVP.',
+                description: 'Architect a robust, scalable, and secure technical foundation for your application by carefully selecting the most appropriate technology stack, database schemas, and cloud infrastructure. A well-planned system architecture not only ensures that your Minimum Viable Product can handle initial user loads smoothly but also prevents costly technical debt, allowing your engineering team to rapidly add new features and scale operations as your user base grows.',
                 whyItMatters: 'Good architecture ensures your product can scale as you grow.',
                 instructions: [
                   'Choose your tech stack',
@@ -276,8 +288,10 @@ export const mockPrograms: Program[] = [
                   'Create API documentation',
                 ],
                 resources: [
-                  { title: 'Tech Stack Selection Guide', url: '#', type: 'article' },
+                  { title: 'System Architecture Basics', url: '#', type: 'video' },
+                  { title: 'Choosing the Right Tech Stack', url: '#', type: 'pdf' },
                   { title: 'Architecture Diagram Template', url: '#', type: 'template' },
+                  { title: 'Cloud Infrastructure Calculator', url: '#', type: 'tool' },
                 ],
                 estimatedTime: 4,
                 assignedRole: 'Product',
@@ -304,7 +318,7 @@ export const mockPrograms: Program[] = [
               {
                 id: 'task9',
                 title: 'Launch Strategy',
-                description: 'Create a comprehensive launch strategy for your product.',
+                description: 'Develop a highly coordinated, multi-channel go-to-market strategy that maximizes your product\'s visibility and user acquisition during the critical launch window. By meticulously planning your public relations outreach, social media campaigns, email marketing sequences, and community engagement tactics, you can create substantial anticipation, drive a massive surge of initial traffic, and secure the early adopters necessary to generate strong initial momentum and valuable social proof.',
                 whyItMatters: 'A well-planned launch maximizes your chances of early traction.',
                 instructions: [
                   'Define your launch goals and KPIs',
@@ -313,8 +327,10 @@ export const mockPrograms: Program[] = [
                   'Prepare launch assets and content',
                 ],
                 resources: [
-                  { title: 'Product Launch Playbook', url: '#', type: 'article' },
+                  { title: 'Go-To-Market Launch Masterclass', url: '#', type: 'video' },
+                  { title: 'Product Launch Playbook', url: '#', type: 'pdf' },
                   { title: 'Launch Checklist Template', url: '#', type: 'template' },
+                  { title: 'Launch Campaign Tracker', url: '#', type: 'tool' },
                 ],
                 estimatedTime: 4,
                 assignedRole: 'Marketing',
@@ -325,7 +341,7 @@ export const mockPrograms: Program[] = [
               {
                 id: 'task10',
                 title: 'Pricing Strategy',
-                description: 'Develop a pricing strategy that aligns with your value and market.',
+                description: 'Formulate a comprehensive, data-driven pricing strategy that accurately reflects the immense value your product delivers while remaining highly competitive within your target market sector. By extensively researching competitor pricing models, calculating your customer acquisition costs, and conducting willingness-to-pay tests with early users, you can establish optimal price points and subscription tiers that maximize your revenue potential and ensure long-term financial sustainability for the business.',
                 whyItMatters: 'Pricing directly impacts revenue and customer perception.',
                 instructions: [
                   'Research competitor pricing',
@@ -334,8 +350,10 @@ export const mockPrograms: Program[] = [
                   'Test pricing with potential customers',
                 ],
                 resources: [
-                  { title: 'Pricing Strategy Guide', url: '#', type: 'article' },
-                  { title: 'Pricing Calculator', url: '#', type: 'tool' },
+                  { title: 'SaaS Pricing Strategies Explained', url: '#', type: 'video' },
+                  { title: 'Pricing Strategy Guide', url: '#', type: 'pdf' },
+                  { title: 'Pricing Matrix Template', url: '#', type: 'template' },
+                  { title: 'Pricing Calculator Model', url: '#', type: 'tool' },
                 ],
                 estimatedTime: 3,
                 assignedRole: 'Finance',
@@ -350,7 +368,6 @@ export const mockPrograms: Program[] = [
     ],
   },
 ];
-
 // Mock Task Submissions
 export const mockSubmissions: TaskSubmission[] = [
   {

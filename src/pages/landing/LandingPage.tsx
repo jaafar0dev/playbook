@@ -1,8 +1,19 @@
-import { Button } from '@/components/ui/button';
-import { ArrowRight, CheckCircle, Users, Target, Zap, BarChart3, Shield, Clock, MessageSquare, Wallet } from 'lucide-react';
+import { Button } from "@/components/ui/button";
+import {
+  ArrowRight,
+  CheckCircle,
+  Users,
+  Target,
+  Zap,
+  BarChart3,
+  Shield,
+  Clock,
+  MessageSquare,
+  Wallet,
+} from "lucide-react";
 
 interface LandingPageProps {
-  onNavigate: (page: 'landing' | 'login' | 'signup') => void;
+  onNavigate: (page: "landing" | "login" | "signup") => void;
 }
 
 export default function LandingPage({ onNavigate }: LandingPageProps) {
@@ -16,15 +27,13 @@ export default function LandingPage({ onNavigate }: LandingPageProps) {
               <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-violet-600 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-sm">PB</span>
               </div>
-              <span className="font-semibold text-xl">Playbook</span>
+              <span className="font-semibold text-xl">Growth Playbook</span>
             </div>
             <div className="flex items-center gap-4">
-              <Button variant="ghost" onClick={() => onNavigate('login')}>
+              <Button variant="ghost" onClick={() => onNavigate("login")}>
                 Log in
               </Button>
-              <Button onClick={() => onNavigate('signup')}>
-                Get Started
-              </Button>
+              <Button onClick={() => onNavigate("signup")}>Get Started</Button>
             </div>
           </div>
         </div>
@@ -41,43 +50,50 @@ export default function LandingPage({ onNavigate }: LandingPageProps) {
             Now accepting new founders
           </div>
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 mb-8">
-            The exact <span className="gradient-text">process</span> &{' '}
+            The exact <span className="gradient-text">process</span> &{" "}
             <span className="gradient-text">growth</span> playbook to build
             <br className="hidden sm:block" /> and scale your business.
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-10">
-            Follow a step-by-step roadmap trusted by thousands of successful founders. 
-            Execute tasks, collaborate with your team, and prove real progress through validated milestones.
+            Follow a step-by-step roadmap trusted by thousands of successful
+            founders. Execute tasks, collaborate with your team, and prove real
+            progress through validated milestones.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="h-14 px-8 text-lg"
-              onClick={() => onNavigate('signup')}
+              onClick={() => onNavigate("signup")}
             >
               Get Started
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
-            <Button 
-              variant="outline" 
-              size="lg" 
+            <Button
+              variant="outline"
+              size="lg"
               className="h-14 px-8 text-lg"
-              onClick={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() =>
+                document
+                  .getElementById("how-it-works")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
             >
               Learn More
             </Button>
           </div>
-          
+
           {/* Stats */}
           <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { value: '10K+', label: 'Founders Helped' },
-              { value: '$500M+', label: 'Funding Raised' },
-              { value: '85%', label: 'Success Rate' },
-              { value: '4.9/5', label: 'User Rating' },
+              { value: "10K+", label: "Founders Helped" },
+              { value: "$500M+", label: "Funding Raised" },
+              { value: "85%", label: "Success Rate" },
+              { value: "4.9/5", label: "User Rating" },
             ].map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-3xl font-bold text-gray-900">{stat.value}</div>
+                <div className="text-3xl font-bold text-gray-900">
+                  {stat.value}
+                </div>
                 <div className="text-sm text-gray-500 mt-1">{stat.label}</div>
               </div>
             ))}
@@ -90,40 +106,48 @@ export default function LandingPage({ onNavigate }: LandingPageProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              How Playbook Works
+              How Growth Playbook Works
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              A proven system that guides you through every step of building a successful business
+              A proven system that guides you through every step of building a
+              successful business
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                step: '01',
-                title: 'Follow the Roadmap',
-                description: 'Access structured playbooks designed by successful founders and industry experts. Each phase builds on the last.',
+                step: "01",
+                title: "Follow the Roadmap",
+                description:
+                  "Access structured playbooks designed by successful founders and industry experts. Each phase builds on the last.",
                 icon: Target,
               },
               {
-                step: '02',
-                title: 'Execute & Submit',
-                description: 'Complete tasks with detailed instructions, upload proof of work, and track your progress in real-time.',
+                step: "02",
+                title: "Execute & Submit",
+                description:
+                  "Complete tasks with detailed instructions, upload proof of work, and track your progress in real-time.",
                 icon: CheckCircle,
               },
               {
-                step: '03',
-                title: 'Get Validated',
-                description: 'Receive feedback from experienced admins. Approved tasks unlock the next phase of your journey.',
+                step: "03",
+                title: "Get Validated",
+                description:
+                  "Receive feedback from experienced admins. Approved tasks unlock the next phase of your journey.",
                 icon: Zap,
               },
             ].map((item, index) => (
               <div key={index} className="bg-white rounded-2xl p-8 card-hover">
-                <div className="text-5xl font-bold text-blue-100 mb-4">{item.step}</div>
+                <div className="text-5xl font-bold text-blue-100 mb-4">
+                  {item.step}
+                </div>
                 <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mb-6">
                   <item.icon className="h-6 w-6 text-blue-600" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">{item.title}</h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  {item.title}
+                </h3>
                 <p className="text-gray-600">{item.description}</p>
               </div>
             ))}
@@ -142,60 +166,71 @@ export default function LandingPage({ onNavigate }: LandingPageProps) {
               A complete toolkit designed for modern founders and their teams
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
                 icon: Target,
-                title: 'Structured Roadmaps',
-                description: 'Step-by-step playbooks from idea to scale, with clear milestones and deliverables.',
+                title: "Structured Roadmaps",
+                description:
+                  "Step-by-step playbooks from idea to scale, with clear milestones and deliverables.",
               },
               {
                 icon: Users,
-                title: 'Team Collaboration',
-                description: 'Invite team members, assign roles, and work together seamlessly in one workspace.',
+                title: "Team Collaboration",
+                description:
+                  "Invite team members, assign roles, and work together seamlessly in one workspace.",
               },
               {
                 icon: CheckCircle,
-                title: 'Task Validation',
-                description: 'Submit proof of work and get approved by experienced admins before progressing.',
+                title: "Task Validation",
+                description:
+                  "Submit proof of work and get approved by experienced admins before progressing.",
               },
               {
                 icon: Clock,
-                title: 'Time Tracking',
-                description: 'Clock in/out, track hours, and get automatic task scheduling based on availability.',
+                title: "Time Tracking",
+                description:
+                  "Clock in/out, track hours, and get automatic task scheduling based on availability.",
               },
               {
                 icon: MessageSquare,
-                title: 'Team Chat',
-                description: 'Built-in messaging for discussions, file sharing, and real-time collaboration.',
+                title: "Team Chat",
+                description:
+                  "Built-in messaging for discussions, file sharing, and real-time collaboration.",
               },
               {
                 icon: Wallet,
-                title: 'Referral Rewards',
-                description: 'Earn wallet credits for every founder you refer to the platform.',
+                title: "Referral Rewards",
+                description:
+                  "Earn wallet credits for every founder you refer to the platform.",
               },
               {
                 icon: BarChart3,
-                title: 'Progress Analytics',
-                description: 'Track your journey with detailed progress bars, stats, and insights.',
+                title: "Progress Analytics",
+                description:
+                  "Track your journey with detailed progress bars, stats, and insights.",
               },
               {
                 icon: Shield,
-                title: 'Admin Oversight',
-                description: 'Quality assurance through expert review of all task submissions.',
+                title: "Admin Oversight",
+                description:
+                  "Quality assurance through expert review of all task submissions.",
               },
               {
                 icon: Zap,
-                title: 'Smart Scheduling',
-                description: 'Tasks automatically scheduled to fit your available work hours.',
+                title: "Smart Scheduling",
+                description:
+                  "Tasks automatically scheduled to fit your available work hours.",
               },
             ].map((feature, index) => (
               <div key={index} className="bg-gray-50 rounded-xl p-6 card-hover">
                 <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center mb-4 shadow-sm">
                   <feature.icon className="h-5 w-5 text-blue-600" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{feature.title}</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  {feature.title}
+                </h3>
                 <p className="text-gray-600 text-sm">{feature.description}</p>
               </div>
             ))}
@@ -214,23 +249,27 @@ export default function LandingPage({ onNavigate }: LandingPageProps) {
               See what entrepreneurs are saying about their Playbook experience
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                quote: "Playbook gave us the structure we desperately needed. We went from idea to first customers in 8 weeks.",
+                quote:
+                  "Growth Playbook gave us the structure we desperately needed. We went from idea to first customers in 8 weeks.",
                 author: "Marcus Chen",
                 role: "CEO, TechFlow",
-                avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Marcus",
+                avatar:
+                  "https://api.dicebear.com/7.x/avataaars/svg?seed=Marcus",
               },
               {
-                quote: "The validation process is game-changing. Having experts review our work kept us accountable and on track.",
+                quote:
+                  "The validation process is game-changing. Having experts review our work kept us accountable and on track.",
                 author: "Sarah Williams",
                 role: "Founder, GreenStart",
                 avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah",
               },
               {
-                quote: "Our team productivity increased 3x after joining. The roadmap removed all guesswork from our strategy.",
+                quote:
+                  "Our team productivity increased 3x after joining. The roadmap removed all guesswork from our strategy.",
                 author: "David Park",
                 role: "CTO, DataSync",
                 avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=David",
@@ -239,21 +278,27 @@ export default function LandingPage({ onNavigate }: LandingPageProps) {
               <div key={index} className="bg-gray-800 rounded-2xl p-8">
                 <div className="flex gap-1 mb-6">
                   {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                    <svg
+                      key={i}
+                      className="w-5 h-5 text-yellow-400 fill-current"
+                      viewBox="0 0 20 20"
+                    >
                       <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                     </svg>
                   ))}
                 </div>
                 <p className="text-gray-300 mb-6">"{testimonial.quote}"</p>
                 <div className="flex items-center gap-4">
-                  <img 
-                    src={testimonial.avatar} 
+                  <img
+                    src={testimonial.avatar}
                     alt={testimonial.author}
                     className="w-12 h-12 rounded-full bg-gray-700"
                   />
                   <div>
                     <div className="font-semibold">{testimonial.author}</div>
-                    <div className="text-sm text-gray-400">{testimonial.role}</div>
+                    <div className="text-sm text-gray-400">
+                      {testimonial.role}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -270,15 +315,15 @@ export default function LandingPage({ onNavigate }: LandingPageProps) {
               Ready to Build Your Business?
             </h2>
             <p className="text-lg text-blue-100 mb-8 max-w-xl mx-auto">
-              Join thousands of founders following the proven path to startup success. 
-              Start your journey today.
+              Join thousands of founders following the proven path to startup
+              success. Start your journey today.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 variant="secondary"
                 className="h-14 px-8 text-lg"
-                onClick={() => onNavigate('signup')}
+                onClick={() => onNavigate("signup")}
               >
                 Get Started Now
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -299,15 +344,21 @@ export default function LandingPage({ onNavigate }: LandingPageProps) {
               <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-violet-600 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-sm">PB</span>
               </div>
-              <span className="font-semibold text-xl">Playbook</span>
+              <span className="font-semibold text-xl">Growth Playbook</span>
             </div>
             <div className="flex items-center gap-8 text-sm text-gray-600">
-              <a href="#" className="hover:text-gray-900">Privacy</a>
-              <a href="#" className="hover:text-gray-900">Terms</a>
-              <a href="#" className="hover:text-gray-900">Support</a>
+              <a href="#" className="hover:text-gray-900">
+                Privacy
+              </a>
+              <a href="#" className="hover:text-gray-900">
+                Terms
+              </a>
+              <a href="#" className="hover:text-gray-900">
+                Support
+              </a>
             </div>
             <div className="text-sm text-gray-500">
-              © 2024 Playbook. All rights reserved.
+              © 2024 Growth Playbook. All rights reserved.
             </div>
           </div>
         </div>
