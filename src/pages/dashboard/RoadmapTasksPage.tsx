@@ -355,7 +355,7 @@ export default function RoadmapTasksPage() {
                           <p className="text-xs text-gray-500 capitalize">
                             {/* Renamed pdf to Written Document */}
                             {resource.type?.toLowerCase() === "pdf"
-                              ? "Written Document"
+                              ? "Document"
                               : resource.type}
                           </p>
                         </div>
@@ -549,7 +549,7 @@ export default function RoadmapTasksPage() {
                       {/* Video Submission Link */}
                       <div>
                         <Label htmlFor="video" className="text-base">
-                          Video Submission Link
+                          Upload Video or Submit a Video Link
                         </Label>
                         <div className="relative mt-3">
                           <Video className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
