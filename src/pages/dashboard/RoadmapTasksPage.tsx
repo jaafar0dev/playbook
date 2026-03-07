@@ -21,15 +21,17 @@ import {
   ChevronLeft,
   BookOpen,
   FileText,
-  PlaySquare,
+  Youtube,
   ExternalLink,
   Info,
   X,
   Home,
-  Users,
-  Tag,
   Briefcase,
+  GraduationCap,
+  MonitorPlay,
+  Users,
 } from "lucide-react";
+
 import type { Task } from "@/types";
 
 type EnrichedTask = Task & {
@@ -66,14 +68,15 @@ export default function RoadmapTasksPage() {
   const getResourceIcon = (type: string) => {
     switch (type?.toLowerCase()) {
       case "video":
-        return <PlaySquare className="h-5 w-5 text-indigo-500" />;
+        return <Youtube className="h-5 w-5 text-red-600" />; // Red icon like YouTube
+      case "pdf":
+        return <FileText className="h-5 w-5 text-red-500" />; // Red document icon for PDF
       case "template":
         return <FileText className="h-5 w-5 text-emerald-500" />;
       default:
         return <BookOpen className="h-5 w-5 text-blue-500" />;
     }
   };
-
   // Process data to find progress and organize tasks logically
   const {
     progressPercentage,
@@ -343,109 +346,84 @@ export default function RoadmapTasksPage() {
                 </div>
               </section>
             )}
-            {/* NEW: Vendor Outsourcing Section with Discounts */}
+
+            {/* NEW: Hire a Growth Expert CTA */}
             {!isApproved && (
-              <section className="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-2xl p-6 md:p-8 border border-indigo-100 shadow-sm relative overflow-hidden">
-                <div className="absolute top-0 right-0 p-6 opacity-10">
-                  <Users className="w-32 h-32" />
+              <section className="bg-blue-600 rounded-2xl p-6 md:p-8 text-white flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-md relative overflow-hidden">
+                <div className="absolute right-0 top-0 opacity-10 pointer-events-none">
+                  <Users className="w-48 h-48 -mr-10 -mt-10" />
                 </div>
-                <div className="relative z-10">
-                  <div className="flex items-center justify-between mb-2">
-                    <h2 className="text-xl font-bold text-indigo-900 flex items-center gap-2">
-                      <Briefcase className="h-6 w-6 text-indigo-600" />
-                      Too busy? Outsource this task.
-                    </h2>
-                    {/* Floating Discount Badge */}
-                    <span className="hidden sm:flex items-center gap-1 bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full border border-green-200 shadow-sm">
-                      <Tag className="w-3 h-3" />
-                      Platform Discounts Active
-                    </span>
+                <div className="relative z-10 flex items-start sm:items-center gap-4">
+                  <div className="bg-white/20 p-3 rounded-xl shrink-0 hidden sm:block">
+                    <Briefcase className="h-6 w-6 text-white" />
                   </div>
+                  <div>
+                    <h2 className="text-xl font-bold mb-1 flex items-center gap-2">
+                      Need a Growth Supervisor?
+                    </h2>
+                    <p className="text-blue-100 text-sm max-w-lg mt-1 leading-relaxed">
+                      Don’t have time or knowledge to effectively supervise your
+                      team?
+                    </p>
+                  </div>
+                </div>
+                <Button className="bg-white text-blue-600 hover:bg-gray-100 hover:text-blue-700 shrink-0 border-0 h-11 px-6 font-semibold relative z-10 w-full md:w-auto transition-colors">
+                  Hire an Expert
+                </Button>
+              </section>
+            )}
 
-                  <p className="text-indigo-700/80 mb-6 max-w-xl">
-                    You're running a business; your time is valuable. Connect
-                    with verified Growth Supervisors and specialized vendors who
-                    can execute this task for you immediately.
-                  </p>
-
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    {/* Growth Supervisor Card */}
-                    <div className="bg-white p-4 rounded-xl border border-indigo-100 shadow-sm flex flex-col justify-between hover:border-indigo-300 hover:shadow-md transition-all relative">
-                      {/* 20% Off Corner Ribbon/Badge */}
-                      <div className="absolute -top-3 -right-3 bg-red-500 text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-sm transform rotate-12">
-                        20% OFF
-                      </div>
-
-                      <div className="mb-4">
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="bg-indigo-100 text-indigo-700 text-xs font-bold px-2 py-0.5 rounded">
-                            PRO
-                          </span>
-                          <h4 className="font-bold text-gray-900">
-                            Growth Supervisor
-                          </h4>
+            {/* NEW: In-Depth Training Section */}
+            {selectedTask.trainings && selectedTask.trainings.length > 0 && (
+              <section className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-6 md:p-8 border border-amber-100 shadow-sm">
+                <div className="flex items-center gap-2 mb-2">
+                  <GraduationCap className="h-6 w-6 text-amber-600" />
+                  <h2 className="text-lg font-bold text-amber-900">
+                    Further Knowledge?
+                  </h2>
+                </div>
+                <p className="text-sm text-amber-800/80 mb-5">
+                  Need more than surface-level knowledge? Enroll in a
+                  comprehensive training program to master this subject.
+                </p>
+                <div className="grid gap-3">
+                  {selectedTask.trainings.map((training, idx) => (
+                    <div
+                      key={idx}
+                      className="bg-white p-4 rounded-xl border border-amber-100 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:border-amber-300 transition-all"
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className="bg-amber-100 p-2 rounded-lg mt-1 sm:mt-0 flex-shrink-0">
+                          <MonitorPlay className="h-5 w-5 text-amber-600" />
                         </div>
-                        <p className="text-sm text-gray-500 line-clamp-2">
-                          A dedicated supervisor to manage and execute this
-                          phase on your behalf.
-                        </p>
-                      </div>
-                      <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-50">
-                        <div className="flex flex-col">
-                          <div className="flex items-center gap-2">
-                            <span className="text-lg font-bold text-gray-900">
-                              $40
+                        <div>
+                          <h4 className="font-bold text-gray-900">
+                            {training.title}
+                          </h4>
+                          <div className="flex items-center gap-2 mt-1 text-xs text-gray-500">
+                            <span className="font-medium text-amber-700">
+                              {training.provider}
                             </span>
-                            <span className="text-sm text-gray-400 line-through">
-                              $50
+                            <span>•</span>
+                            <span className="flex items-center gap-1">
+                              <Clock className="w-3 h-3" /> {training.duration}
                             </span>
                           </div>
-                          <span className="text-[10px] text-green-600 font-semibold uppercase tracking-wider">
-                            Early Adopter Rate
-                          </span>
                         </div>
-                        <Button
-                          size="sm"
-                          className="bg-indigo-600 hover:bg-indigo-700 text-white"
-                        >
-                          Hire Now
-                        </Button>
                       </div>
+                      <Button
+                        className="bg-amber-600 hover:bg-amber-700 text-white shrink-0"
+                        onClick={() => window.open(training.url, "_blank")}
+                      >
+                        Enroll & Learn
+                      </Button>
                     </div>
-
-                    {/* Freelance Specialist Card */}
-                    <div className="bg-white p-4 rounded-xl border border-indigo-100 shadow-sm flex flex-col justify-between hover:border-indigo-300 hover:shadow-md transition-all">
-                      <div className="mb-4">
-                        <h4 className="font-bold text-gray-900 mb-1">
-                          Freelance Specialist
-                        </h4>
-                        <p className="text-sm text-gray-500 line-clamp-2">
-                          A vetted independent contractor specializing in this
-                          specific task type.
-                        </p>
-                      </div>
-                      <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-50">
-                        <div className="flex flex-col">
-                          <span className="text-sm font-semibold text-gray-900">
-                            Get Quotes
-                          </span>
-                          <span className="text-[10px] text-indigo-500 font-medium">
-                            Use wallet balance for up to 15% off
-                          </span>
-                        </div>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className="border-indigo-200 text-indigo-700 hover:bg-indigo-50"
-                        >
-                          View Vendors
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </section>
             )}
+
+            {/* Right Column: Meta Info */}
 
             {/* Submission Form / Action Area */}
             {!isApproved && !isPending && (
@@ -600,6 +578,56 @@ export default function RoadmapTasksPage() {
                     {selectedTask.estimatedTime || 0} hours
                   </p>
                 </div>
+
+                <div className="lg:col-span-1 space-y-6">
+                  {/* NEW: Service Providers Section (Moved below Time Estimate) */}
+                  {!isApproved && (
+                    <Card className="bg-gradient-to-br from-indigo-50 to-blue-50 border-indigo-100 shadow-sm overflow-hidden">
+                      <CardContent className="p-6 relative">
+                        <div className="absolute top-0 right-0 p-4 opacity-5">
+                          <Briefcase className="w-24 h-24 text-indigo-900" />
+                        </div>
+                        <div className="relative z-10">
+                          <div className="flex items-center gap-2 mb-3">
+                            <Briefcase className="h-5 w-5 text-indigo-600" />
+                            <h3 className="font-bold text-indigo-900">
+                              Service Providers
+                            </h3>
+                          </div>
+
+                          <p className="text-sm text-indigo-700/80 mb-5">
+                            Need to outsource this task? Connect with our
+                            verified partners.
+                          </p>
+
+                          <div className="space-y-4">
+                            {/* Provider 1 */}
+                            <div className="bg-white p-4 rounded-xl border border-indigo-100 shadow-sm relative hover:border-indigo-300 transition-all">
+                              <div className="absolute -top-2 -right-2 bg-green-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm z-10">
+                                Up to 20% - 50% OFF
+                              </div>
+                              <h4 className="font-bold text-gray-900 text-sm">
+                                CopyWriting Company
+                              </h4>
+                              <p className="text-xs text-gray-500 mb-3 mt-1">
+                                Specialized providers for all your writing
+                                needs. From blog posts to ad copy, get it done.
+                              </p>
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                className="w-full h-8 text-xs border-indigo-200 text-indigo-700 hover:bg-indigo-50"
+                              >
+                                View Details
+                              </Button>
+                            </div>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  )}
+                </div>
+
                 <div>
                   <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">
                     Assigned Role

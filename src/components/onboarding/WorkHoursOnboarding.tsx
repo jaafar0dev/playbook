@@ -14,7 +14,8 @@ interface WorkHoursOnboardingProps {
   onComplete: (workHours: {
     startTime: string;
     endTime: string;
-    breakTime: string;
+    breakStartTime: string;
+    breakEndTime: string;
   }) => void;
 }
 
@@ -43,14 +44,15 @@ export default function WorkHoursOnboarding({
 }: WorkHoursOnboardingProps) {
   const [startTime, setStartTime] = useState("9:00 AM");
   const [endTime, setEndTime] = useState("5:00 PM");
-  const [breakTime, setBreakTime] = useState("1:00 PM");
+  const [breakStartTime, setBreakStartTime] = useState("12:00 PM");
+  const [breakEndTime, setBreakEndTime] = useState("1:00 PM");
 
   const handleSubmit = () => {
-    onComplete({ startTime, endTime, breakTime });
+    onComplete({ startTime, endTime, breakStartTime, breakEndTime });
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4 py-8">
       <Card className="w-full max-w-lg">
         <CardHeader className="text-center">
           <div className="flex justify-center mb-4">
@@ -77,7 +79,7 @@ export default function WorkHoursOnboarding({
                   key={time}
                   type="button"
                   onClick={() => setStartTime(time)}
-                  className={`px-3 py-2 text-sm rounded-lg border transition-all ${
+                  className={`px-2 py-2 text-xs sm:text-sm rounded-lg border transition-all ${
                     startTime === time
                       ? "bg-blue-600 text-white border-blue-600"
                       : "bg-white text-gray-700 border-gray-200 hover:border-blue-300"
@@ -89,20 +91,44 @@ export default function WorkHoursOnboarding({
             </div>
           </div>
 
-          {/* Break Time */}
-          <div className="space-y-3">
+          {/* Break Start Time */}
+          <div className="space-y-3 border-t pt-5">
             <Label className="flex items-center gap-2">
               <Coffee className="h-4 w-4 text-orange-500" />
-              When do you take your main break?
+              When does your break start?
             </Label>
             <div className="grid grid-cols-4 gap-2">
               {timeSlots.slice(5, 11).map((time) => (
                 <button
                   key={time}
                   type="button"
-                  onClick={() => setBreakTime(time)}
-                  className={`px-3 py-2 text-sm rounded-lg border transition-all ${
-                    breakTime === time
+                  onClick={() => setBreakStartTime(time)}
+                  className={`px-2 py-2 text-xs sm:text-sm rounded-lg border transition-all ${
+                    breakStartTime === time
+                      ? "bg-blue-600 text-white border-blue-600"
+                      : "bg-white text-gray-700 border-gray-200 hover:border-blue-300"
+                  }`}
+                >
+                  {time}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Break End Time */}
+          <div className="space-y-3">
+            <Label className="flex items-center gap-2">
+              <Coffee className="h-4 w-4 text-orange-500" />
+              When does your break end?
+            </Label>
+            <div className="grid grid-cols-4 gap-2">
+              {timeSlots.slice(6, 12).map((time) => (
+                <button
+                  key={time}
+                  type="button"
+                  onClick={() => setBreakEndTime(time)}
+                  className={`px-2 py-2 text-xs sm:text-sm rounded-lg border transition-all ${
+                    breakEndTime === time
                       ? "bg-blue-600 text-white border-blue-600"
                       : "bg-white text-gray-700 border-gray-200 hover:border-blue-300"
                   }`}
@@ -114,18 +140,18 @@ export default function WorkHoursOnboarding({
           </div>
 
           {/* End Time */}
-          <div className="space-y-3">
+          <div className="space-y-3 border-t pt-5">
             <Label className="flex items-center gap-2">
               <Moon className="h-4 w-4 text-indigo-500" />
               When do you typically end work?
             </Label>
             <div className="grid grid-cols-4 gap-2">
-              {timeSlots.slice(6).map((time) => (
+              {timeSlots.slice(8, 16).map((time) => (
                 <button
                   key={time}
                   type="button"
                   onClick={() => setEndTime(time)}
-                  className={`px-3 py-2 text-sm rounded-lg border transition-all ${
+                  className={`px-2 py-2 text-xs sm:text-sm rounded-lg border transition-all ${
                     endTime === time
                       ? "bg-blue-600 text-white border-blue-600"
                       : "bg-white text-gray-700 border-gray-200 hover:border-blue-300"
@@ -141,8 +167,9 @@ export default function WorkHoursOnboarding({
           <div className="p-4 bg-blue-50 rounded-lg">
             <p className="text-sm text-blue-700 text-center">
               You'll work from <strong>{startTime}</strong> to{" "}
-              <strong>{endTime}</strong>, with a break at{" "}
-              <strong>{breakTime}</strong>.
+              <strong>{endTime}</strong>,<br className="sm:hidden" /> with a
+              break from <strong>{breakStartTime}</strong> to{" "}
+              <strong>{breakEndTime}</strong>.
             </p>
           </div>
 

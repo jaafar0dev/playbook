@@ -1,12 +1,15 @@
 import type { User, Team, Program, TaskSubmission, TimeLog, Referral, Message, WalletTransaction } from '@/types';
+// Make sure all imports and exports are valid.
 
+// Mock Users
 // Current logged in user (simulated)
 export const currentUser: User = {
   id: '1',
   name: 'Alex Johnson',
   email: 'alex@dogrowth.com',
   role: 'Founder',
-  referralCode: 'DG07041200171',
+  referralCode: '+2348012345678', // Changed to phone number
+  whatsappNumber: '+2348012345678', // Added whatsapp field
   walletBalance: 150,
   createdAt: '2024-01-15T10:00:00Z',
   avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Alex',
@@ -20,8 +23,8 @@ export const mockUsers: User[] = [
     name: 'Sarah Chen',
     email: 'sarah@dogrowth.com',
     role: 'Marketing',
-    referralCode: 'DG07041200172',
-    referredBy: 'DG07041200171',
+    referralCode: '+2348023456789',
+    referredBy: '+2348012345678', // Refers back to Alex's phone number
     teamId: 'team1',
     walletBalance: 75,
     createdAt: '2024-02-01T14:30:00Z',
@@ -32,8 +35,8 @@ export const mockUsers: User[] = [
     name: 'Mike Roberts',
     email: 'mike@dogrowth.com',
     role: 'Sales',
-    referralCode: 'DG07041200173',
-    referredBy: 'DG07041200171',
+    referralCode: '+2348034567890',
+    referredBy: '+2348012345678', // Refers back to Alex's phone number
     teamId: 'team1',
     walletBalance: 50,
     createdAt: '2024-02-10T09:15:00Z',
@@ -44,14 +47,13 @@ export const mockUsers: User[] = [
     name: 'Emily Watson',
     email: 'emily@dogrowth.com',
     role: 'Product',
-    referralCode: 'DG07041200174',
+    referralCode: '+2348045678901',
     teamId: 'team1',
     walletBalance: 25,
     createdAt: '2024-02-20T16:45:00Z',
     avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Emily',
   },
 ];
-
 // Mock Teams
 export const mockTeams: Team[] = [
   {
@@ -102,6 +104,14 @@ export const mockPrograms: Program[] = [
                   { title: 'Market Sizing Template', url: '#', type: 'template' },
                   { title: 'Market Analysis Dashboard', url: '#', type: 'tool' },
                 ],
+                trainings: [
+                  {
+                    title: 'Advanced Market Analysis & Consumer Psychology',
+                    provider: 'Growth Academy',
+                    duration: '4 Weeks',
+                    url: '#'
+                  }
+                ],
                 estimatedTime: 4,
                 assignedRole: 'Founder',
                 phase: 'Phase 1 – Idea Validation',
@@ -125,6 +135,14 @@ export const mockPrograms: Program[] = [
                   { title: 'Customer Interview Script', url: '#', type: 'template' },
                   { title: 'Interview Recording & Transcription App', url: '#', type: 'tool' },
                 ],
+                trainings: [
+                  {
+                    title: 'Continuous Customer Discovery & Interview Tactics',
+                    provider: 'Product School',
+                    duration: '2 Weeks',
+                    url: '#'
+                  }
+                ],
                 estimatedTime: 6,
                 assignedRole: 'Founder',
                 phase: 'Phase 1 – Idea Validation',
@@ -147,6 +165,14 @@ export const mockPrograms: Program[] = [
                   { title: 'Competitive Intelligence Report Example', url: '#', type: 'pdf' },
                   { title: 'Competitor Analysis Template', url: '#', type: 'template' },
                   { title: 'Competitive Intelligence Analytics', url: '#', type: 'tool' },
+                ],
+                trainings: [
+                  {
+                    title: 'Strategic Competitive Intelligence Mapping',
+                    provider: 'Strategy Institute',
+                    duration: '3 Weeks',
+                    url: '#'
+                  }
                 ],
                 estimatedTime: 3,
                 assignedRole: 'Marketing',
@@ -178,6 +204,14 @@ export const mockPrograms: Program[] = [
                   { title: 'Value Proposition Canvas', url: '#', type: 'template' },
                   { title: 'Value Prop Generator', url: '#', type: 'tool' },
                 ],
+                trainings: [
+                  {
+                    title: 'Value Proposition Design & Positioning',
+                    provider: 'Brand Masters',
+                    duration: '2 Weeks',
+                    url: '#'
+                  }
+                ],
                 estimatedTime: 2,
                 assignedRole: 'Founder',
                 phase: 'Phase 1 – Idea Validation',
@@ -200,6 +234,14 @@ export const mockPrograms: Program[] = [
                   { title: 'Validating Problems with Data', url: '#', type: 'pdf' },
                   { title: 'Problem Validation Survey Template', url: '#', type: 'template' },
                   { title: 'Survey Builder App', url: '#', type: 'tool' },
+                ],
+                trainings: [
+                  {
+                    title: 'Quantitative Data Analysis for Startups',
+                    provider: 'DataCamp',
+                    duration: '5 Weeks',
+                    url: '#'
+                  }
                 ],
                 estimatedTime: 4,
                 assignedRole: 'Marketing',
@@ -240,6 +282,14 @@ export const mockPrograms: Program[] = [
                   { title: 'Product Roadmap Template', url: '#', type: 'template' },
                   { title: 'Roadmap Planning Software', url: '#', type: 'tool' },
                 ],
+                trainings: [
+                  {
+                    title: 'Agile Product Management & Roadmap Strategy',
+                    provider: 'Product School',
+                    duration: '6 Weeks',
+                    url: '#'
+                  }
+                ],
                 estimatedTime: 3,
                 assignedRole: 'Product',
                 phase: 'Phase 2 – MVP Development',
@@ -262,6 +312,14 @@ export const mockPrograms: Program[] = [
                   { title: 'UI/UX Wireframing Guide', url: '#', type: 'pdf' },
                   { title: 'UI Component Library Template', url: '#', type: 'template' },
                   { title: 'Wireframing & Design App', url: '#', type: 'tool' },
+                ],
+                trainings: [
+                  {
+                    title: 'Complete UI/UX Design & Prototyping Bootcamp',
+                    provider: 'Design Academy',
+                    duration: '8 Weeks',
+                    url: '#'
+                  }
                 ],
                 estimatedTime: 5,
                 assignedRole: 'Product',
@@ -292,6 +350,14 @@ export const mockPrograms: Program[] = [
                   { title: 'Choosing the Right Tech Stack', url: '#', type: 'pdf' },
                   { title: 'Architecture Diagram Template', url: '#', type: 'template' },
                   { title: 'Cloud Infrastructure Calculator', url: '#', type: 'tool' },
+                ],
+                trainings: [
+                  {
+                    title: 'Cloud Architecture & Systems Design',
+                    provider: 'AWS Training',
+                    duration: '4 Weeks',
+                    url: '#'
+                  }
                 ],
                 estimatedTime: 4,
                 assignedRole: 'Product',
@@ -332,6 +398,14 @@ export const mockPrograms: Program[] = [
                   { title: 'Launch Checklist Template', url: '#', type: 'template' },
                   { title: 'Launch Campaign Tracker', url: '#', type: 'tool' },
                 ],
+                trainings: [
+                  {
+                    title: 'Advanced Go-To-Market & Growth Hacking',
+                    provider: 'GrowthX',
+                    duration: '5 Weeks',
+                    url: '#'
+                  }
+                ],
                 estimatedTime: 4,
                 assignedRole: 'Marketing',
                 phase: 'Phase 3 – Launch & Growth',
@@ -355,6 +429,14 @@ export const mockPrograms: Program[] = [
                   { title: 'Pricing Matrix Template', url: '#', type: 'template' },
                   { title: 'Pricing Calculator Model', url: '#', type: 'tool' },
                 ],
+                trainings: [
+                  {
+                    title: 'SaaS Economics & Pricing Optimization',
+                    provider: 'Finance Institute',
+                    duration: '3 Weeks',
+                    url: '#'
+                  }
+                ],
                 estimatedTime: 3,
                 assignedRole: 'Finance',
                 phase: 'Phase 3 – Launch & Growth',
@@ -368,6 +450,7 @@ export const mockPrograms: Program[] = [
     ],
   },
 ];
+
 // Mock Task Submissions
 export const mockSubmissions: TaskSubmission[] = [
   {

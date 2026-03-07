@@ -8,12 +8,34 @@ export interface User {
   role: UserRole;
   referralCode: string;
   referredBy?: string;
+  whatsappNumber?: string; // <-- Must be here
+  enableWhatsappReminders?: boolean; // <-- Must be here
   teamId?: string;
   walletBalance: number;
   createdAt: string;
   avatar?: string;
-  whatsappNumber?: string;
-  enableWhatsappReminders?: boolean;
+}
+
+export interface Training { // <-- Must be here
+  title: string;
+  provider: string;
+  duration: string;
+  url: string;
+}
+
+export interface Task {
+  id: string;
+  title: string;
+  description: string;
+  whyItMatters: string;
+  instructions: string[];
+  resources: Resource[];
+  trainings?: Training[]; // <-- Must be here
+  estimatedTime: number;
+  assignedRole: UserRole;
+  phase: string;
+  week: number;
+  programId: string;
 }
 
 // Team Types

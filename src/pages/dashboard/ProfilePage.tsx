@@ -38,13 +38,14 @@ export default function ProfilePage() {
       name: formData.name,
       email: formData.email,
       whatsappNumber: formData.whatsappNumber,
+      // Overwrite referralCode with the phone number if available
+      referralCode: formData.whatsappNumber || currentUser.referralCode,
       enableWhatsappReminders: formData.enableWhatsappReminders,
     });
     setIsEditing(false);
     setShowSuccess(true);
     setTimeout(() => setShowSuccess(false), 3000);
   };
-
   return (
     <div className="space-y-6 animate-fade-in">
       {/* Header */}
@@ -98,11 +99,10 @@ export default function ProfilePage() {
                 </Badge>
               </div>
             </div>
-
             <div className="text-right">
-              <div className="text-sm text-gray-500">Referral Code</div>
+              <div className="text-sm text-gray-500">Referral Code (Phone)</div>
               <div className="text-lg font-mono font-medium text-gray-900">
-                {currentUser.referralCode}
+                {currentUser.whatsappNumber || currentUser.referralCode}
               </div>
             </div>
           </div>
@@ -120,6 +120,21 @@ export default function ProfilePage() {
           )}
         </CardHeader>
         <CardContent className="space-y-6">
+          <div className="space-y-2">
+            <Label htmlFor="referral">
+              <Key className="h-4 w-4 inline mr-2" />
+              Referral Code
+            </Label>
+            <Input
+              id="referral"
+              value={currentUser.whatsappNumber || currentUser.referralCode}
+              disabled
+              className="bg-gray-50 font-mono"
+            />
+            <p className="text-xs text-gray-500">
+              Your phone number is your referral code.
+            </p>
+          </div>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="space-y-2">
               <Label htmlFor="name">
