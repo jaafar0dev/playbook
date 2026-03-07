@@ -30,7 +30,6 @@ import {
   GraduationCap,
   MonitorPlay,
   Users,
-  File, // Added for the stacked PDF/Word icon
   Video, // Added for the Video Submission input
 } from "lucide-react";
 
@@ -71,13 +70,21 @@ export default function RoadmapTasksPage() {
   const getResourceIcon = (type: string) => {
     switch (type?.toLowerCase()) {
       case "video":
-        return <Youtube className="h-5 w-5 text-red-600" />;
+        return <Youtube className="h-6 w-6 text-red-600" />;
       case "pdf":
-        // Shows a blue Word document icon overlapping a red PDF icon
+        // Shows the actual Microsoft Word and Adobe PDF logos stacked
         return (
-          <div className="flex items-center -space-x-1.5 relative">
-            <File className="h-5 w-5 text-blue-600 relative z-0" />
-            <FileText className="h-5 w-5 text-red-500 bg-gray-50 rounded-sm relative z-10" />
+          <div className="flex items-center -space-x-1.5 relative group">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Microsoft_Office_Word_%282019%E2%80%932025%29.svg/960px-Microsoft_Office_Word_%282019%E2%80%932025%29.svg.png?_=20210821050502"
+              alt="Word Document"
+              className="w-6 h-6 object-contain relative z-0 transition-all duration-200"
+            />
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg"
+              alt="PDF Document"
+              className="w-6 h-6 object-contain relative z-10 transition-all duration-200"
+            />
           </div>
         );
       case "template":
@@ -355,7 +362,7 @@ export default function RoadmapTasksPage() {
                           <p className="text-xs text-gray-500 capitalize">
                             {/* Renamed pdf to Written Document */}
                             {resource.type?.toLowerCase() === "pdf"
-                              ? "Document"
+                              ? "Written Document"
                               : resource.type}
                           </p>
                         </div>
@@ -549,7 +556,7 @@ export default function RoadmapTasksPage() {
                       {/* Video Submission Link */}
                       <div>
                         <Label htmlFor="video" className="text-base">
-                          Upload Video or Submit a Video Link
+                          Video Submission Link
                         </Label>
                         <div className="relative mt-3">
                           <Video className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
