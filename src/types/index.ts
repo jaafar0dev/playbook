@@ -115,6 +115,7 @@ export interface TaskSubmission {
   teamId?: string;
   fileUrl?: string;
   linkUrl?: string;
+  videoUrl?: string;
   notes?: string;
   status: SubmissionStatus;
   adminFeedback?: string;

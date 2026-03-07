@@ -30,6 +30,8 @@ import {
   GraduationCap,
   MonitorPlay,
   Users,
+  File, // Added for the stacked PDF/Word icon
+  Video, // Added for the Video Submission input
 } from "lucide-react";
 
 import type { Task } from "@/types";
@@ -51,6 +53,7 @@ export default function RoadmapTasksPage() {
   // Form inputs
   const [submissionNotes, setSubmissionNotes] = useState("");
   const [submissionLink, setSubmissionLink] = useState("");
+  const [submissionVideo, setSubmissionVideo] = useState(""); // NEW: Video submission state
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
 
   // Helper: Can user access this task?
@@ -68,15 +71,22 @@ export default function RoadmapTasksPage() {
   const getResourceIcon = (type: string) => {
     switch (type?.toLowerCase()) {
       case "video":
-        return <Youtube className="h-5 w-5 text-red-600" />; // Red icon like YouTube
+        return <Youtube className="h-5 w-5 text-red-600" />;
       case "pdf":
-        return <FileText className="h-5 w-5 text-red-500" />; // Red document icon for PDF
+        // Shows a blue Word document icon overlapping a red PDF icon
+        return (
+          <div className="flex items-center -space-x-1.5 relative">
+            <File className="h-5 w-5 text-blue-600 relative z-0" />
+            <FileText className="h-5 w-5 text-red-500 bg-gray-50 rounded-sm relative z-10" />
+          </div>
+        );
       case "template":
         return <FileText className="h-5 w-5 text-emerald-500" />;
       default:
         return <BookOpen className="h-5 w-5 text-blue-500" />;
     }
   };
+
   // Process data to find progress and organize tasks logically
   const {
     progressPercentage,
@@ -177,6 +187,7 @@ export default function RoadmapTasksPage() {
     setIsSubmittingForm(false);
     setSubmissionNotes("");
     setSubmissionLink("");
+    setSubmissionVideo(""); // Reset video link state
     setUploadedFile(null);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -195,6 +206,7 @@ export default function RoadmapTasksPage() {
       userName: currentUser.name,
       teamId: currentUser.teamId,
       linkUrl: submissionLink || undefined,
+      videoUrl: submissionVideo || undefined, // Include video URL if present
       notes: submissionNotes,
       // file: uploadedFile -> Add your file upload logic here before/during submitTask
     });
@@ -202,7 +214,12 @@ export default function RoadmapTasksPage() {
     handleBackToRoadmap();
   };
 
-  const isFormValid = submissionLink.trim().length > 0 || uploadedFile !== null;
+  // Valid if ANY of the three proof options are filled
+  const isFormValid =
+    submissionLink.trim().length > 0 ||
+    submissionVideo.trim().length > 0 ||
+    uploadedFile !== null;
+
   const sessionTotalHours = currentTasks.reduce(
     (acc, t) => acc + (t.estimatedTime || 0),
     0,
@@ -336,7 +353,10 @@ export default function RoadmapTasksPage() {
                             {resource.title}
                           </p>
                           <p className="text-xs text-gray-500 capitalize">
-                            {resource.type}
+                            {/* Renamed pdf to Written Document */}
+                            {resource.type?.toLowerCase() === "pdf"
+                              ? "Written Document"
+                              : resource.type}
                           </p>
                         </div>
                       </div>
@@ -423,8 +443,6 @@ export default function RoadmapTasksPage() {
               </section>
             )}
 
-            {/* Right Column: Meta Info */}
-
             {/* Submission Form / Action Area */}
             {!isApproved && !isPending && (
               <section
@@ -457,8 +475,8 @@ export default function RoadmapTasksPage() {
                         Submit Your Work
                       </h3>
                       <p className="text-sm text-gray-500 mt-1">
-                        Provide proof of your work. Include a link or upload a
-                        file.
+                        Provide proof of your work. Include a link, a video, or
+                        upload a file.
                       </p>
                     </div>
 
@@ -528,6 +546,27 @@ export default function RoadmapTasksPage() {
                         </div>
                       </div>
 
+                      {/* Video Submission Link */}
+                      <div>
+                        <Label htmlFor="video" className="text-base">
+                          Video Submission Link
+                        </Label>
+                        <div className="relative mt-3">
+                          <Video className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                          <Input
+                            id="video"
+                            placeholder="https://loom.com/share/..."
+                            className="pl-12 h-12 text-base"
+                            value={submissionVideo}
+                            onChange={(e) => setSubmissionVideo(e.target.value)}
+                          />
+                        </div>
+                        <p className="text-xs text-gray-500 mt-1">
+                          Share a Loom, YouTube, or Google Drive link
+                          demonstrating your work.
+                        </p>
+                      </div>
+
                       <div>
                         <Label htmlFor="notes" className="text-base">
                           Notes for Reviewer (Optional)
@@ -580,7 +619,7 @@ export default function RoadmapTasksPage() {
                 </div>
 
                 <div className="lg:col-span-1 space-y-6">
-                  {/* NEW: Service Providers Section (Moved below Time Estimate) */}
+                  {/* Service Providers Section */}
                   {!isApproved && (
                     <Card className="bg-gradient-to-br from-indigo-50 to-blue-50 border-indigo-100 shadow-sm overflow-hidden">
                       <CardContent className="p-6 relative">
